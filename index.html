@@ -11,6 +11,11 @@
 </head>
 <body>
 
+<div class="lang-switch">
+<button data-lang="ru" class="active">RU</button>
+<button data-lang="en">EN</button>
+</div>
+
 
 <header class="hero">
 <div class="hero-content fade-up">
@@ -20,7 +25,7 @@
 <img class="avatar" src="https://cdn.discordapp.com/avatars/1337523649825214474/fdf98999f99d16361a7d11c344823255.webp?size=1024" alt="Yulčik avatar">
 </div>
 <h1 class="gradient-text">Yulčik</h1>
-<p>Личная страница • Биография • Контакты</p>
+<p data-i18n="subtitle">Личная страница • Биография • Контакты</p>
 </div>
 </header>
 
@@ -28,13 +33,12 @@
 <section class="section">
 <div class="grid">
 <div class="card fade-up">
-<h2 class="gradient-text">Обо мне</h2>
-<p>Здесь кратко обо мне — кто я, чем живу и что для меня важно.</p>
-<p>Приветик! Меня зовут Юлей!!! Я живу в Украине (Не страшно ведь?) :з</p>
+<h2 class="gradient-text" data-i18n="about_title">Хто я бля</h2>
+<p data-i18n="about_text">Приветики! :з Меня зовут юлько, я чист живу в Украине (не страшна жи?) Мне явно не 18 но 14) А хуле незя та</p>
 </div>
 <div class="card fade-up">
-<h2 class="gradient-text">Шо я делау</h2>
-<p>Делаю я в основном свою лень. Я часта играу, нихуя не делаю, и сплю, такие дела)</p>
+<h2 class="gradient-text" data-i18n="path_title">Шо я делау</h2>
+<p data-i18n="path_text">Я проста играу, делау лень и сплю чаще и больше нихуя</p>
 </div>
 </div>
 </section>
@@ -42,7 +46,7 @@
 
 <section class="section">
 <div class="card fade-up">
-<h2 class="gradient-text">Социальные сети</h2>
+<h2 class="gradient-text" data-i18n="socials_title">Социальные сети</h2>
 <div class="socials">
 <a href="https://t.me/ulkazhulka" class="icon tg" aria-label="Telegram"></a>
 <a href="https://discord.com/users/1337523649825214474" class="icon dc" aria-label="Discord"></a>
@@ -53,11 +57,51 @@
 
 
 <footer>
-<p>юля дура</p>
+<p data-i18n="footer_info">юля дура</p>
+<p data-i18n="footer_dedication">сайт посвящается кристинко kys4me, любимому nebula <3, кате Кринжессе</p>
 </footer>
 
 
 <script src="js/scroll.js"></script>
 <script src="js/snow.js"></script>
+<script>
+const dict = {
+ru: {
+subtitle: 'Личная страница • Биография • Контакты',
+about_title: 'Хто я бля',
+about_text: 'Приветики! :з Меня зовут юлько, я чист живу в Украине (не страшна жи?) Мне явно не 18 но 14) А хуле незя та',
+path_title: 'Шо я делау',
+path_text: 'Я проста играу, делау лень и сплю чаще и больше нихуя',
+socials_title: 'соцсетеке',
+footer_info: 'юля дура',
+footer_dedication: 'сайт посвящается кристинко kys4me, любимому nebula <3, кате Кринжессе'
+},
+en: {
+subtitle: 'Personal page • Biography • Contacts',
+about_title: 'Who am I',
+about_text: 'Hai! My name is Julia, better call me Yulcik. I live my life in Ukraine, Kyiv (not that scary right..? right..?)',
+path_title: 'What do I do?',
+path_text: 'idk most of the time i play, sleep, making laziness',
+socials_title: 'socials',
+footer_info: 'yulcik is dumb',
+footer_dedication: 'the site is dedicated to kristinko kys4me, my beloved neb <3, and to Katya Princess of Cringe'
+}
+};
+
+
+const buttons = document.querySelectorAll('.lang-switch button');
+
+
+buttons.forEach(btn => {
+btn.addEventListener('click', () => {
+buttons.forEach(b => b.classList.remove('active'));
+btn.classList.add('active');
+const lang = btn.dataset.lang;
+document.querySelectorAll('[data-i18n]').forEach(el => {
+el.textContent = dict[lang][el.dataset.i18n];
+});
+});
+});
+</script>
 </body>
 </html>
