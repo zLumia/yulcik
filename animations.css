@@ -1,0 +1,25 @@
+.fade-up {
+opacity: 0;
+transform: translateY(40px);
+transition: 1s ease;
+}
+
+
+.fade-up.show {
+opacity: 1;
+transform: translateY(0);
+}
+
+
+.snowflake {
+position: fixed;
+top: -10px;
+color: white;
+pointer-events: none;
+animation: fall linear infinite;
+}
+
+
+@keyframes fall {
+to { transform: translateY(110vh); }
+}
